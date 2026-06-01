@@ -86,22 +86,22 @@ function ResetPasswordForm() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-neutral-50 via-neutral-100 to-neutral-200 dark:from-neutral-950 dark:via-neutral-900 dark:to-neutral-800 p-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-neutral-50 via-neutral-100 to-neutral-200 dark:from-neutral-950 dark:via-neutral-900 dark:to-neutral-800 p-4 sm:p-6 md:p-8">
       <div className="w-full max-w-md">
         {/* Logo/Brand Section */}
-        <div className="text-center mb-8">
-          <h1 className="text-5xl font-bold bg-gradient-to-r from-neutral-900 to-neutral-600 dark:from-neutral-100 dark:to-neutral-400 bg-clip-text text-transparent">
+        <div className="text-center mb-6 sm:mb-8">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold bg-gradient-to-r from-neutral-900 to-neutral-600 dark:from-neutral-100 dark:to-neutral-400 bg-clip-text text-transparent">
             RestT
           </h1>
-          <p className="text-neutral-600 dark:text-neutral-400 mt-3 text-lg">
+          <p className="text-neutral-600 dark:text-neutral-400 mt-2 sm:mt-3 text-base sm:text-lg">
             Create a new password
           </p>
         </div>
 
         {/* Form */}
-        <div className="space-y-6">
+        <div className="space-y-5 sm:space-y-6">
           <div>
-            <h2 className="text-2xl font-bold text-neutral-900 dark:text-neutral-100 mb-2">
+            <h2 className="text-xl sm:text-2xl font-bold text-neutral-900 dark:text-neutral-100 mb-2">
               Reset Password
             </h2>
             <p className="text-sm text-neutral-600 dark:text-neutral-400">
@@ -110,9 +110,9 @@ function ResetPasswordForm() {
           </div>
 
           {!success ? (
-            <form onSubmit={handleSubmit} className="space-y-5">
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
               {error && (
-                <div className="p-4 text-sm text-red-600 bg-red-50 dark:bg-red-950/30 dark:text-red-400 border border-red-200 dark:border-red-900 rounded-lg">
+                <div className="p-3 sm:p-4 text-sm text-red-600 bg-red-50 dark:bg-red-950/30 dark:text-red-400 border border-red-200 dark:border-red-900 rounded-2xl sm:rounded-3xl">
                   {error}
                 </div>
               )}
@@ -189,8 +189,8 @@ function ResetPasswordForm() {
               </Button>
             </form>
           ) : (
-            <div className="space-y-5">
-              <div className="p-4 text-sm text-green-600 bg-green-50 dark:bg-green-950/30 dark:text-green-400 border border-green-200 dark:border-green-900 rounded-lg">
+            <div className="space-y-4 sm:space-y-5">
+              <div className="p-3 sm:p-4 text-sm text-green-600 bg-green-50 dark:bg-green-950/30 dark:text-green-400 border border-green-200 dark:border-green-900 rounded-2xl sm:rounded-3xl">
                 <div className="flex items-start gap-3">
                   <svg
                     className="w-5 h-5 mt-0.5 flex-shrink-0"
@@ -243,8 +243,8 @@ function ResetPasswordForm() {
 
         {/* Footer */}
         {!token && (
-          <div className="mt-6 p-4 bg-yellow-50 dark:bg-yellow-950/30 border border-yellow-200 dark:border-yellow-900 rounded-lg">
-            <p className="text-sm text-yellow-800 dark:text-yellow-400">
+          <div className="mt-5 sm:mt-6 p-3 sm:p-4 bg-yellow-50 dark:bg-yellow-950/30 border border-yellow-200 dark:border-yellow-900 rounded-2xl sm:rounded-3xl">
+            <p className="text-xs sm:text-sm text-yellow-800 dark:text-yellow-400">
               <strong>Invalid reset link?</strong> Request a new password reset link from the{" "}
               <Link
                 href="/forgot-password"

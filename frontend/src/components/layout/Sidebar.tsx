@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
@@ -12,6 +12,8 @@ import {
   ChevronRight,
   LogOut,
   UserCircle,
+  Menu,
+  X,
 } from "lucide-react";
 
 interface SidebarProps {
@@ -19,10 +21,38 @@ interface SidebarProps {
 }
 
 export function Sidebar({ children }: SidebarProps) {
-  const [isExpanded, setIsExpanded] = useState(true);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const pathname = usePathname();
   const { user, logout } = useAuth();
+
+  // Set initial expanded state based on screen size
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setIsExpanded(true);
+        setIsMobileOpen(false);
+      } else if (window.innerWidth >= 768) {
+        setIsExpanded(false);
+        setIsMobileOpen(false);
+      } else {
+        setIsMobileOpen(false);
+      }
+    };
+
+    // Set initial state
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Close mobile menu when route changes
+  useEffect(() => {
+    setIsMobileOpen(false);
+    setIsProfileOpen(false);
+  }, [pathname]);
 
   const menuItems = [
     {
@@ -41,11 +71,38 @@ export function Sidebar({ children }: SidebarProps) {
 
   return (
     <div className="flex h-screen bg-neutral-50 dark:bg-neutral-950 overflow-hidden">
+      {/* Mobile Menu Button */}
+      <button
+        onClick={() => setIsMobileOpen(!isMobileOpen)}
+        className="md:hidden fixed top-4 left-4 z-50 p-2 rounded-lg bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 shadow-lg hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors"
+        aria-label={isMobileOpen ? "Close menu" : "Open menu"}
+      >
+        {isMobileOpen ? (
+          <X className="w-6 h-6 text-neutral-600 dark:text-neutral-400" />
+        ) : (
+          <Menu className="w-6 h-6 text-neutral-600 dark:text-neutral-400" />
+        )}
+      </button>
+
+      {/* Mobile Overlay */}
+      {isMobileOpen && (
+        <div
+          className="md:hidden fixed inset-0 bg-black/50 z-30 backdrop-blur-sm"
+          onClick={() => setIsMobileOpen(false)}
+        />
+      )}
+
       {/* Sidebar */}
       <aside
-        className={`${
-          isExpanded ? "w-64" : "w-20"
-        } bg-white dark:bg-neutral-900 border-r border-neutral-200 dark:border-neutral-800 transition-all duration-300 ease-in-out flex flex-col flex-shrink-0`}
+        className={`
+          ${isExpanded ? "w-64" : "w-20"}
+          bg-white dark:bg-neutral-900 border-r border-neutral-200 dark:border-neutral-800 
+          transition-all duration-300 ease-in-out flex flex-col flex-shrink-0
+          
+          /* Mobile: Fixed overlay sidebar */
+          fixed md:relative inset-y-0 left-0 z-40
+          ${isMobileOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}
+        `}
       >
         {/* Header */}
         <div className="h-16 flex items-center justify-between px-4 border-b border-neutral-200 dark:border-neutral-800 flex-shrink-0">
@@ -59,7 +116,7 @@ export function Sidebar({ children }: SidebarProps) {
           </Link>
           <button
             onClick={() => setIsExpanded(!isExpanded)}
-            className="p-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors flex-shrink-0"
+            className="hidden md:block p-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors flex-shrink-0"
             aria-label={isExpanded ? "Collapse sidebar" : "Expand sidebar"}
           >
             {isExpanded ? (
@@ -136,7 +193,7 @@ export function Sidebar({ children }: SidebarProps) {
             {isProfileOpen && (
               <div
                 className={`absolute bottom-full left-0 right-0 mb-2 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-lg shadow-lg overflow-hidden ${
-                  isExpanded ? "" : "left-auto right-auto w-48 ml-3"
+                  isExpanded ? "" : "left-auto right-auto w-48 md:ml-3"
                 }`}
               >
                 <Link
@@ -168,7 +225,9 @@ export function Sidebar({ children }: SidebarProps) {
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 overflow-y-auto">
+      <main className="flex-1 overflow-y-auto w-full md:w-auto">
+        {/* Mobile: Add padding to prevent content from being hidden under menu button */}
+        <div className="md:hidden h-16" />
         {children}
       </main>
     </div>

@@ -15,33 +15,33 @@ function DashboardContent() {
   const { user } = useAuth();
 
   return (
-    <div className="p-8">
+    <div className="p-4 sm:p-6 md:p-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-neutral-900 dark:text-neutral-100">
+        <div className="mb-6 sm:mb-8">
+          <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 dark:text-neutral-100">
             Dashboard
           </h1>
-          <p className="text-neutral-600 dark:text-neutral-400 mt-1">
+          <p className="text-sm sm:text-base text-neutral-600 dark:text-neutral-400 mt-1">
             Welcome back, {user?.firstName}!
           </p>
         </div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <div className="bg-white dark:bg-neutral-900 rounded-lg shadow-sm border border-neutral-200 dark:border-neutral-800 p-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-6 sm:mb-8">
+          <div className="bg-white dark:bg-neutral-900 rounded-2xl sm:rounded-3xl shadow-sm border border-neutral-200 dark:border-neutral-800 p-4 sm:p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-neutral-600 dark:text-neutral-400">
+                <p className="text-xs sm:text-sm font-medium text-neutral-600 dark:text-neutral-400">
                   Account Type
                 </p>
-                <p className="text-2xl font-bold text-neutral-900 dark:text-neutral-100 mt-2">
+                <p className="text-xl sm:text-2xl font-bold text-neutral-900 dark:text-neutral-100 mt-2">
                   {user?.role.name}
                 </p>
               </div>
-              <div className="w-12 h-12 bg-neutral-100 dark:bg-neutral-800 rounded-lg flex items-center justify-center">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-neutral-100 dark:bg-neutral-800 rounded-lg flex items-center justify-center flex-shrink-0">
                 <svg
-                  className="w-6 h-6 text-neutral-600 dark:text-neutral-400"
+                  className="w-5 h-5 sm:w-6 sm:h-6 text-neutral-600 dark:text-neutral-400"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -57,19 +57,19 @@ function DashboardContent() {
             </div>
           </div>
 
-          <div className="bg-white dark:bg-neutral-900 rounded-lg shadow-sm border border-neutral-200 dark:border-neutral-800 p-6">
+          <div className="bg-white dark:bg-neutral-900 rounded-2xl sm:rounded-3xl shadow-sm border border-neutral-200 dark:border-neutral-800 p-4 sm:p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-neutral-600 dark:text-neutral-400">
+                <p className="text-xs sm:text-sm font-medium text-neutral-600 dark:text-neutral-400">
                   Status
                 </p>
-                <p className="text-2xl font-bold text-green-600 dark:text-green-400 mt-2">
+                <p className="text-xl sm:text-2xl font-bold text-green-600 dark:text-green-400 mt-2">
                   {user?.status}
                 </p>
               </div>
-              <div className="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center flex-shrink-0">
                 <svg
-                  className="w-6 h-6 text-green-600 dark:text-green-400"
+                  className="w-5 h-5 sm:w-6 sm:h-6 text-green-600 dark:text-green-400"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -85,13 +85,13 @@ function DashboardContent() {
             </div>
           </div>
 
-          <div className="bg-white dark:bg-neutral-900 rounded-lg shadow-sm border border-neutral-200 dark:border-neutral-800 p-6">
+          <div className="bg-white dark:bg-neutral-900 rounded-2xl sm:rounded-3xl shadow-sm border border-neutral-200 dark:border-neutral-800 p-4 sm:p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-neutral-600 dark:text-neutral-400">
+                <p className="text-xs sm:text-sm font-medium text-neutral-600 dark:text-neutral-400">
                   Email Status
                 </p>
-                <p className={`text-2xl font-bold mt-2 ${
+                <p className={`text-xl sm:text-2xl font-bold mt-2 ${
                   user?.emailVerified 
                     ? 'text-green-600 dark:text-green-400' 
                     : 'text-yellow-600 dark:text-yellow-400'
@@ -99,13 +99,13 @@ function DashboardContent() {
                   {user?.emailVerified ? 'Verified' : 'Pending'}
                 </p>
               </div>
-              <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${
+              <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-lg flex items-center justify-center flex-shrink-0 ${
                 user?.emailVerified
                   ? 'bg-green-100 dark:bg-green-900/30'
                   : 'bg-yellow-100 dark:bg-yellow-900/30'
               }`}>
                 <svg
-                  className={`w-6 h-6 ${
+                  className={`w-5 h-5 sm:w-6 sm:h-6 ${
                     user?.emailVerified
                       ? 'text-green-600 dark:text-green-400'
                       : 'text-yellow-600 dark:text-yellow-400'
@@ -125,19 +125,19 @@ function DashboardContent() {
             </div>
           </div>
 
-          <div className="bg-white dark:bg-neutral-900 rounded-lg shadow-sm border border-neutral-200 dark:border-neutral-800 p-6">
+          <div className="bg-white dark:bg-neutral-900 rounded-2xl sm:rounded-3xl shadow-sm border border-neutral-200 dark:border-neutral-800 p-4 sm:p-6">
             <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-neutral-600 dark:text-neutral-400">
+              <div className="min-w-0 flex-1">
+                <p className="text-xs sm:text-sm font-medium text-neutral-600 dark:text-neutral-400">
                   Member Since
                 </p>
-                <p className="text-lg font-bold text-neutral-900 dark:text-neutral-100 mt-2">
+                <p className="text-base sm:text-lg font-bold text-neutral-900 dark:text-neutral-100 mt-2 truncate">
                   {user?.createdAt ? new Date(user.createdAt).toLocaleDateString() : 'N/A'}
                 </p>
               </div>
-              <div className="w-12 h-12 bg-neutral-100 dark:bg-neutral-800 rounded-lg flex items-center justify-center">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-neutral-100 dark:bg-neutral-800 rounded-lg flex items-center justify-center flex-shrink-0 ml-2">
                 <svg
-                  className="w-6 h-6 text-neutral-600 dark:text-neutral-400"
+                  className="w-5 h-5 sm:w-6 sm:h-6 text-neutral-600 dark:text-neutral-400"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -155,29 +155,29 @@ function DashboardContent() {
         </div>
 
         {/* Profile Card */}
-        <div className="bg-white dark:bg-neutral-900 rounded-lg shadow-sm border border-neutral-200 dark:border-neutral-800 p-6">
-          <h2 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100 mb-6">
+        <div className="bg-white dark:bg-neutral-900 rounded-2xl sm:rounded-3xl shadow-sm border border-neutral-200 dark:border-neutral-800 p-4 sm:p-6">
+          <h2 className="text-lg sm:text-xl font-semibold text-neutral-900 dark:text-neutral-100 mb-4 sm:mb-6">
             Profile Information
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
             <div>
-              <label className="text-sm font-medium text-neutral-600 dark:text-neutral-400">
+              <label className="text-xs sm:text-sm font-medium text-neutral-600 dark:text-neutral-400">
                 Full Name
               </label>
-              <p className="mt-1 text-base text-neutral-900 dark:text-neutral-100">
+              <p className="mt-1 text-sm sm:text-base text-neutral-900 dark:text-neutral-100">
                 {user?.firstName} {user?.lastName}
               </p>
             </div>
             <div>
-              <label className="text-sm font-medium text-neutral-600 dark:text-neutral-400">
+              <label className="text-xs sm:text-sm font-medium text-neutral-600 dark:text-neutral-400">
                 Email Address
               </label>
-              <p className="mt-1 text-base text-neutral-900 dark:text-neutral-100">
+              <p className="mt-1 text-sm sm:text-base text-neutral-900 dark:text-neutral-100 break-all">
                 {user?.email}
               </p>
             </div>
             <div>
-              <label className="text-sm font-medium text-neutral-600 dark:text-neutral-400">
+              <label className="text-xs sm:text-sm font-medium text-neutral-600 dark:text-neutral-400">
                 Role
               </label>
               <p className="mt-1">

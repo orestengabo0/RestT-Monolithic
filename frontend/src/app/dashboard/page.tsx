@@ -186,14 +186,6 @@ function DashboardContent() {
                 </span>
               </p>
             </div>
-            <div>
-              <label className="text-sm font-medium text-neutral-600 dark:text-neutral-400">
-                User ID
-              </label>
-              <p className="mt-1 text-sm font-mono text-neutral-700 dark:text-neutral-300 truncate">
-                {user?.id}
-              </p>
-            </div>
           </div>
         </div>
       </div>

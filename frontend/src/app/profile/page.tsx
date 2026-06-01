@@ -32,7 +32,7 @@ function ProfileContent() {
           {/* Header with Avatar */}
           <div className="bg-gradient-to-r from-neutral-900 to-neutral-600 dark:from-neutral-100 dark:to-neutral-400 h-32"></div>
           <div className="px-6 pb-6">
-            <div className="flex items-end -mt-16 mb-6">
+            <div className="flex items-end -mt-10 mb-6">
               <div className="w-32 h-32 rounded-full bg-white dark:bg-neutral-900 p-2 shadow-lg">
                 <div className="w-full h-full rounded-full bg-gradient-to-br from-neutral-900 to-neutral-600 dark:from-neutral-100 dark:to-neutral-400 flex items-center justify-center">
                   <span className="text-white dark:text-neutral-900 font-bold text-4xl">
@@ -120,12 +120,6 @@ function ProfileContent() {
             {/* Additional Info */}
             <div className="mt-6 pt-6 border-t border-neutral-200 dark:border-neutral-800">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                <div>
-                  <span className="text-neutral-600 dark:text-neutral-400">User ID:</span>
-                  <span className="ml-2 font-mono text-neutral-900 dark:text-neutral-100">
-                    {user?.id}
-                  </span>
-                </div>
                 <div>
                   <span className="text-neutral-600 dark:text-neutral-400">Member Since:</span>
                   <span className="ml-2 text-neutral-900 dark:text-neutral-100">

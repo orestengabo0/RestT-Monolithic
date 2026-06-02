@@ -1,0 +1,58 @@
+//// ------------------------------------------------------
+//// THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+//// ------------------------------------------------------
+
+Table roles {
+  id String [pk]
+  name RoleType [unique, not null]
+  description String
+  users users [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table users {
+  id String [pk]
+  email String [unique, not null]
+  password String [not null]
+  firstName String [not null]
+  lastName String [not null]
+  status UserStatus [not null, default: 'ACTIVE']
+  emailVerified Boolean [not null, default: false]
+  emailVerifiedAt DateTime
+  emailVerificationToken String [unique]
+  emailVerificationExpires DateTime
+  lastLoginAt DateTime
+  passwordResetToken String [unique]
+  passwordResetExpires DateTime
+  roleId String [not null]
+  role roles [not null]
+  refreshTokens refresh_tokens [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table refresh_tokens {
+  id String [pk]
+  token String [unique, not null]
+  userId String [not null]
+  user users [not null]
+  expiresAt DateTime [not null]
+  createdAt DateTime [default: `now()`, not null]
+}
+
+Enum UserStatus {
+  ACTIVE
+  INACTIVE
+  SUSPENDED
+}
+
+Enum RoleType {
+  ADMIN
+  USER
+  MODERATOR
+}
+
+Ref: users.roleId > roles.id
+
+Ref: refresh_tokens.userId > users.id [delete: Cascade]
